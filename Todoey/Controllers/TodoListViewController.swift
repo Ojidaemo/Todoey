@@ -10,6 +10,7 @@ import UIKit
 class TodoListViewController: UITableViewController {
     
     var itemArray = [Item]()
+    //creating new plist for our data
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
     
     override func viewDidLoad() {
@@ -76,6 +77,7 @@ class TodoListViewController: UITableViewController {
     
     //MARK: - Model manipulation Methods
     
+    //encoding and decoding our custom data to save and load them from custom plist
     func saveItems() {
         let encoder = PropertyListEncoder()
         do {

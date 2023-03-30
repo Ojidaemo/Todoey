@@ -8,6 +8,7 @@
 import UIKit
 import RealmSwift
 import SwipeCellKit
+import ChameleonSwift
 
 class TodoListViewController: SwipeTableViewController {
     
@@ -36,6 +37,10 @@ class TodoListViewController: SwipeTableViewController {
         
         if let item = toDoItems?[indexPath.row] {
             cell.textLabel?.text = item.title
+            if let colour = UIColor(hexString: selectedCategory!.colour)?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(toDoItems!.count)) {
+                cell.backgroundColor = colour
+                cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
+            }
             cell.accessoryType = item.done == true ? .checkmark : .none
         } else {
             cell.textLabel?.text = "No items added"

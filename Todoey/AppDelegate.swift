@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         migrate()
+        migrate2()
         
         // path to the realm file
 //        print(Realm.Configuration.defaultConfiguration.fileURL)
@@ -50,6 +51,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if oldSchemaVersion < 1 {
                     migration.enumerateObjects(ofType: Item.className()) { oldObject, newObject in
                         newObject?["dateCreated"] = Date()
+                    }
+                }
+            }
+        )
+        Realm.Configuration.defaultConfiguration = config
+    }
+    
+    func migrate2(){
+        let config = Realm.Configuration(
+            schemaVersion: 2,
+            migrationBlock: { migration, oldSchemaVersion in
+                
+                if oldSchemaVersion < 2 {
+                    migration.enumerateObjects(ofType: Category.className()) { oldObject, newObject in
+                        newObject?["colour"] = String()
                     }
                 }
             }

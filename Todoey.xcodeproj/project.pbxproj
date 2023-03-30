@@ -20,6 +20,8 @@
 		875ECEDC29D4506000FDFC68 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875ECEDB29D4506000FDFC68 /* Category.swift */; };
 		875ECEDF29D5B04100FDFC68 /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 875ECEDE29D5B04100FDFC68 /* SwipeCellKit */; };
 		875ECEE429D5CA9600FDFC68 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875ECEE329D5CA9600FDFC68 /* SwipeTableViewController.swift */; };
+		875ECEE729D5E18300FDFC68 /* Chameleon in Frameworks */ = {isa = PBXBuildFile; productRef = 875ECEE629D5E18300FDFC68 /* Chameleon */; };
+		875ECEE929D5E18300FDFC68 /* ChameleonSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 875ECEE829D5E18300FDFC68 /* ChameleonSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +44,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				875ECEE929D5E18300FDFC68 /* ChameleonSwift in Frameworks */,
 				875ECED629D4420F00FDFC68 /* RealmSwift in Frameworks */,
+				875ECEE729D5E18300FDFC68 /* Chameleon in Frameworks */,
 				875ECEDF29D5B04100FDFC68 /* SwipeCellKit in Frameworks */,
 				875ECED429D4420F00FDFC68 /* Realm in Frameworks */,
 			);
@@ -129,6 +133,8 @@
 				875ECED329D4420F00FDFC68 /* Realm */,
 				875ECED529D4420F00FDFC68 /* RealmSwift */,
 				875ECEDE29D5B04100FDFC68 /* SwipeCellKit */,
+				875ECEE629D5E18300FDFC68 /* Chameleon */,
+				875ECEE829D5E18300FDFC68 /* ChameleonSwift */,
 			);
 			productName = Todoey;
 			productReference = 875ECE8E29CF74EE00FDFC68 /* Todoey.app */;
@@ -161,6 +167,7 @@
 			packageReferences = (
 				875ECED229D4420F00FDFC68 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				875ECEDD29D5B04100FDFC68 /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
+				875ECEE529D5E18300FDFC68 /* XCRemoteSwiftPackageReference "Chameleon" */,
 			);
 			productRefGroup = 875ECE8F29CF74EE00FDFC68 /* Products */;
 			projectDirPath = "";
@@ -349,7 +356,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -377,7 +384,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -431,6 +438,14 @@
 				kind = branch;
 			};
 		};
+		875ECEE529D5E18300FDFC68 /* XCRemoteSwiftPackageReference "Chameleon" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dwsdolce/Chameleon.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -448,6 +463,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 875ECEDD29D5B04100FDFC68 /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
 			productName = SwipeCellKit;
+		};
+		875ECEE629D5E18300FDFC68 /* Chameleon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 875ECEE529D5E18300FDFC68 /* XCRemoteSwiftPackageReference "Chameleon" */;
+			productName = Chameleon;
+		};
+		875ECEE829D5E18300FDFC68 /* ChameleonSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 875ECEE529D5E18300FDFC68 /* XCRemoteSwiftPackageReference "Chameleon" */;
+			productName = ChameleonSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

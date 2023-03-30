@@ -8,12 +8,12 @@
 import UIKit
 import RealmSwift
 
-class CategoryViewController: UITableViewController {
+class CategoryViewController: SwipeTableViewController {
     
     //initializing new realm
     lazy var realm = try! Realm()
     var categoryArray: Results<Category>?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCategories()
@@ -46,7 +46,8 @@ class CategoryViewController: UITableViewController {
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         alert.addAction(action)
         alert.addAction(cancel)
-        present(alert, animated: true)    }
+        present(alert, animated: true)
+    }
     
     //MARK: - TableView Datasource Methods
     
@@ -55,14 +56,13 @@ class CategoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
-                
+        
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
         cell.textLabel?.text = categoryArray?[indexPath.row].name ?? "Please add category to start"
         
         return cell
     }
-    
-
     
     //MARK: - TableView Delegate Methods
     
@@ -76,13 +76,9 @@ class CategoryViewController: UITableViewController {
         if let indexPath = tableView.indexPathForSelectedRow {
             destinationVC.selectedCategory = categoryArray?[indexPath.row]
         }
-        
     }
-    
-
-    
     //MARK: - Data Manipulation Methods
-        
+    
     func saveToRealm(category: Category) {
         do {
             try realm.write{
@@ -97,5 +93,19 @@ class CategoryViewController: UITableViewController {
         
         categoryArray = realm.objects(Category.self)
         tableView.reloadData()
+    }
+    
+    // delete from swipe
+    override func updateModel(at indexPath: IndexPath) {
+        if let categoryForDeletion = self.categoryArray?[indexPath.row] {
+            
+            do {
+                try self.realm.write {
+                    self.realm.delete(categoryForDeletion)
+                }
+            } catch {
+                print("error")
+            }
+        }
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 import RealmSwift
-import Chameleon
+import ChameleonSwift
 
 class CategoryViewController: SwipeTableViewController {
     
@@ -19,6 +19,16 @@ class CategoryViewController: SwipeTableViewController {
         super.viewDidLoad()
         loadCategories()
         tableView.separatorStyle = .none
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let navBar = navigationController?.navigationBar else { fatalError("Navigation controller does not exist") }
+//        navBar.backgroundColor = UIColor(hexString: "32ADE6")
+//        navBar.standardAppearance.backgroundColor = UIColor(hexString: "32ADE6")
+        navBar.scrollEdgeAppearance?.backgroundColor = UIColor(hexString: "32ADE6")
     }
     
     //MARK: -  Add New Categories
@@ -62,8 +72,14 @@ class CategoryViewController: SwipeTableViewController {
         
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        cell.textLabel?.text = categoryArray?[indexPath.row].name ?? "Please add category to start"
-        cell.backgroundColor = UIColor(hexString: categoryArray?[indexPath.row].colour ?? "32ADE6")
+        if let category = categoryArray?[indexPath.row] {
+            
+            cell.textLabel?.text = category.name
+
+            guard let categoryColour = UIColor(hexString: category.colour) else { fatalError() }
+            cell.backgroundColor = categoryColour
+            cell.textLabel?.textColor = ContrastColorOf(categoryColour, returnFlat: true)
+        }
         
         return cell
     }
